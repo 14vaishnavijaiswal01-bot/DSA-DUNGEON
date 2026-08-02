@@ -17,8 +17,8 @@ export function GlassCard({
 }) {
   return (
     <motion.div
-      onClick={onClick}
-      whileHover={interactive ? { y: -6 } : undefined}
+      {...(onClick ? { onClick } : {})}
+      {...(interactive ? { whileHover: { y: -6 } } : {})}
       transition={{ type: "spring", stiffness: 300, damping: 24 }}
       className={cn(
         "glass rounded-2xl p-5",
