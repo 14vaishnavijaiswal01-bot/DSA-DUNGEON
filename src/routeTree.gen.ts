@@ -13,12 +13,15 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as BattleStageIdRouteImport } from './routes/battle.$stageId'
+import { Route as ChallengeStageIdRouteImport } from './routes/challenge.$stageId'
 import { Route as MapIndexRouteImport } from './routes/map.index'
 import { Route as MapWorldIdRouteImport } from './routes/map.$worldId'
 import { Route as OnboardingCharacterRouteImport } from './routes/onboarding.character'
 import { Route as OnboardingDifficultyRouteImport } from './routes/onboarding.difficulty'
 import { Route as OnboardingLanguageRouteImport } from './routes/onboarding.language'
 import { Route as OnboardingWelcomeRouteImport } from './routes/onboarding.welcome'
+import { Route as VictoryStageIdRouteImport } from './routes/victory.$stageId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -38,6 +41,16 @@ const LoginRoute = LoginRouteImport.update({
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BattleStageIdRoute = BattleStageIdRouteImport.update({
+  id: '/battle/$stageId',
+  path: '/battle/$stageId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChallengeStageIdRoute = ChallengeStageIdRouteImport.update({
+  id: '/challenge/$stageId',
+  path: '/challenge/$stageId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapIndexRoute = MapIndexRouteImport.update({
@@ -70,17 +83,25 @@ const OnboardingWelcomeRoute = OnboardingWelcomeRouteImport.update({
   path: '/onboarding/welcome',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VictoryStageIdRoute = VictoryStageIdRouteImport.update({
+  id: '/victory/$stageId',
+  path: '/victory/$stageId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/battle/$stageId': typeof BattleStageIdRoute
+  '/challenge/$stageId': typeof ChallengeStageIdRoute
   '/map/$worldId': typeof MapWorldIdRoute
   '/onboarding/character': typeof OnboardingCharacterRoute
   '/onboarding/difficulty': typeof OnboardingDifficultyRoute
   '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/victory/$stageId': typeof VictoryStageIdRoute
   '/map/': typeof MapIndexRoute
 }
 export interface FileRoutesByTo {
@@ -88,11 +109,14 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/battle/$stageId': typeof BattleStageIdRoute
+  '/challenge/$stageId': typeof ChallengeStageIdRoute
   '/map/$worldId': typeof MapWorldIdRoute
   '/onboarding/character': typeof OnboardingCharacterRoute
   '/onboarding/difficulty': typeof OnboardingDifficultyRoute
   '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/victory/$stageId': typeof VictoryStageIdRoute
   '/map': typeof MapIndexRoute
 }
 export interface FileRoutesById {
@@ -101,11 +125,14 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/battle/$stageId': typeof BattleStageIdRoute
+  '/challenge/$stageId': typeof ChallengeStageIdRoute
   '/map/$worldId': typeof MapWorldIdRoute
   '/onboarding/character': typeof OnboardingCharacterRoute
   '/onboarding/difficulty': typeof OnboardingDifficultyRoute
   '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/victory/$stageId': typeof VictoryStageIdRoute
   '/map/': typeof MapIndexRoute
 }
 export interface FileRouteTypes {
@@ -115,11 +142,14 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/signup'
+    | '/battle/$stageId'
+    | '/challenge/$stageId'
     | '/map/$worldId'
     | '/onboarding/character'
     | '/onboarding/difficulty'
     | '/onboarding/language'
     | '/onboarding/welcome'
+    | '/victory/$stageId'
     | '/map/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -127,11 +157,14 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/signup'
+    | '/battle/$stageId'
+    | '/challenge/$stageId'
     | '/map/$worldId'
     | '/onboarding/character'
     | '/onboarding/difficulty'
     | '/onboarding/language'
     | '/onboarding/welcome'
+    | '/victory/$stageId'
     | '/map'
   id:
     | '__root__'
@@ -139,11 +172,14 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/signup'
+    | '/battle/$stageId'
+    | '/challenge/$stageId'
     | '/map/$worldId'
     | '/onboarding/character'
     | '/onboarding/difficulty'
     | '/onboarding/language'
     | '/onboarding/welcome'
+    | '/victory/$stageId'
     | '/map/'
   fileRoutesById: FileRoutesById
 }
@@ -152,11 +188,14 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
+  BattleStageIdRoute: typeof BattleStageIdRoute
+  ChallengeStageIdRoute: typeof ChallengeStageIdRoute
   MapWorldIdRoute: typeof MapWorldIdRoute
   OnboardingCharacterRoute: typeof OnboardingCharacterRoute
   OnboardingDifficultyRoute: typeof OnboardingDifficultyRoute
   OnboardingLanguageRoute: typeof OnboardingLanguageRoute
   OnboardingWelcomeRoute: typeof OnboardingWelcomeRoute
+  VictoryStageIdRoute: typeof VictoryStageIdRoute
   MapIndexRoute: typeof MapIndexRoute
 }
 
@@ -188,6 +227,20 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/battle/$stageId': {
+      id: '/battle/$stageId'
+      path: '/battle/$stageId'
+      fullPath: '/battle/$stageId'
+      preLoaderRoute: typeof BattleStageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/challenge/$stageId': {
+      id: '/challenge/$stageId'
+      path: '/challenge/$stageId'
+      fullPath: '/challenge/$stageId'
+      preLoaderRoute: typeof ChallengeStageIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/map/': {
@@ -232,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingWelcomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/victory/$stageId': {
+      id: '/victory/$stageId'
+      path: '/victory/$stageId'
+      fullPath: '/victory/$stageId'
+      preLoaderRoute: typeof VictoryStageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -240,11 +300,14 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
+  BattleStageIdRoute: BattleStageIdRoute,
+  ChallengeStageIdRoute: ChallengeStageIdRoute,
   MapWorldIdRoute: MapWorldIdRoute,
   OnboardingCharacterRoute: OnboardingCharacterRoute,
   OnboardingDifficultyRoute: OnboardingDifficultyRoute,
   OnboardingLanguageRoute: OnboardingLanguageRoute,
   OnboardingWelcomeRoute: OnboardingWelcomeRoute,
+  VictoryStageIdRoute: VictoryStageIdRoute,
   MapIndexRoute: MapIndexRoute,
 }
 export const routeTree = rootRouteImport
