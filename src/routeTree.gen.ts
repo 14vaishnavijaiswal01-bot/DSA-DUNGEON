@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as OnboardingCharacterRouteImport } from './routes/onboarding.character'
+import { Route as OnboardingDifficultyRouteImport } from './routes/onboarding.difficulty'
+import { Route as OnboardingLanguageRouteImport } from './routes/onboarding.language'
 import { Route as OnboardingWelcomeRouteImport } from './routes/onboarding.welcome'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +32,21 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingCharacterRoute = OnboardingCharacterRouteImport.update({
+  id: '/onboarding/character',
+  path: '/onboarding/character',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingDifficultyRoute = OnboardingDifficultyRouteImport.update({
+  id: '/onboarding/difficulty',
+  path: '/onboarding/difficulty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingLanguageRoute = OnboardingLanguageRouteImport.update({
+  id: '/onboarding/language',
+  path: '/onboarding/language',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingWelcomeRoute = OnboardingWelcomeRouteImport.update({
   id: '/onboarding/welcome',
   path: '/onboarding/welcome',
@@ -39,12 +57,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/onboarding/character': typeof OnboardingCharacterRoute
+  '/onboarding/difficulty': typeof OnboardingDifficultyRoute
+  '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/onboarding/character': typeof OnboardingCharacterRoute
+  '/onboarding/difficulty': typeof OnboardingDifficultyRoute
+  '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
 }
 export interface FileRoutesById {
@@ -52,20 +76,48 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/onboarding/character': typeof OnboardingCharacterRoute
+  '/onboarding/difficulty': typeof OnboardingDifficultyRoute
+  '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup' | '/onboarding/welcome'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/onboarding/character'
+    | '/onboarding/difficulty'
+    | '/onboarding/language'
+    | '/onboarding/welcome'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/onboarding/welcome'
-  id: '__root__' | '/' | '/login' | '/signup' | '/onboarding/welcome'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/onboarding/character'
+    | '/onboarding/difficulty'
+    | '/onboarding/language'
+    | '/onboarding/welcome'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/onboarding/character'
+    | '/onboarding/difficulty'
+    | '/onboarding/language'
+    | '/onboarding/welcome'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
+  OnboardingCharacterRoute: typeof OnboardingCharacterRoute
+  OnboardingDifficultyRoute: typeof OnboardingDifficultyRoute
+  OnboardingLanguageRoute: typeof OnboardingLanguageRoute
   OnboardingWelcomeRoute: typeof OnboardingWelcomeRoute
 }
 
@@ -92,6 +144,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/character': {
+      id: '/onboarding/character'
+      path: '/onboarding/character'
+      fullPath: '/onboarding/character'
+      preLoaderRoute: typeof OnboardingCharacterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/difficulty': {
+      id: '/onboarding/difficulty'
+      path: '/onboarding/difficulty'
+      fullPath: '/onboarding/difficulty'
+      preLoaderRoute: typeof OnboardingDifficultyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/language': {
+      id: '/onboarding/language'
+      path: '/onboarding/language'
+      fullPath: '/onboarding/language'
+      preLoaderRoute: typeof OnboardingLanguageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding/welcome': {
       id: '/onboarding/welcome'
       path: '/onboarding/welcome'
@@ -106,6 +179,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
+  OnboardingCharacterRoute: OnboardingCharacterRoute,
+  OnboardingDifficultyRoute: OnboardingDifficultyRoute,
+  OnboardingLanguageRoute: OnboardingLanguageRoute,
   OnboardingWelcomeRoute: OnboardingWelcomeRoute,
 }
 export const routeTree = rootRouteImport
