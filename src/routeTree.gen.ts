@@ -10,8 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as MapIndexRouteImport } from './routes/map.index'
+import { Route as MapWorldIdRouteImport } from './routes/map.$worldId'
 import { Route as OnboardingCharacterRouteImport } from './routes/onboarding.character'
 import { Route as OnboardingDifficultyRouteImport } from './routes/onboarding.difficulty'
 import { Route as OnboardingLanguageRouteImport } from './routes/onboarding.language'
@@ -22,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -30,6 +38,16 @@ const LoginRoute = LoginRouteImport.update({
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapIndexRoute = MapIndexRouteImport.update({
+  id: '/map/',
+  path: '/map/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapWorldIdRoute = MapWorldIdRouteImport.update({
+  id: '/map/$worldId',
+  path: '/map/$worldId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingCharacterRoute = OnboardingCharacterRouteImport.update({
@@ -55,70 +73,91 @@ const OnboardingWelcomeRoute = OnboardingWelcomeRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/map/$worldId': typeof MapWorldIdRoute
   '/onboarding/character': typeof OnboardingCharacterRoute
   '/onboarding/difficulty': typeof OnboardingDifficultyRoute
   '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/map/': typeof MapIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/map/$worldId': typeof MapWorldIdRoute
   '/onboarding/character': typeof OnboardingCharacterRoute
   '/onboarding/difficulty': typeof OnboardingDifficultyRoute
   '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/map': typeof MapIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/map/$worldId': typeof MapWorldIdRoute
   '/onboarding/character': typeof OnboardingCharacterRoute
   '/onboarding/difficulty': typeof OnboardingDifficultyRoute
   '/onboarding/language': typeof OnboardingLanguageRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/map/': typeof MapIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
     | '/login'
     | '/signup'
+    | '/map/$worldId'
     | '/onboarding/character'
     | '/onboarding/difficulty'
     | '/onboarding/language'
     | '/onboarding/welcome'
+    | '/map/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
     | '/login'
     | '/signup'
+    | '/map/$worldId'
     | '/onboarding/character'
     | '/onboarding/difficulty'
     | '/onboarding/language'
     | '/onboarding/welcome'
+    | '/map'
   id:
     | '__root__'
     | '/'
+    | '/dashboard'
     | '/login'
     | '/signup'
+    | '/map/$worldId'
     | '/onboarding/character'
     | '/onboarding/difficulty'
     | '/onboarding/language'
     | '/onboarding/welcome'
+    | '/map/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
+  MapWorldIdRoute: typeof MapWorldIdRoute
   OnboardingCharacterRoute: typeof OnboardingCharacterRoute
   OnboardingDifficultyRoute: typeof OnboardingDifficultyRoute
   OnboardingLanguageRoute: typeof OnboardingLanguageRoute
   OnboardingWelcomeRoute: typeof OnboardingWelcomeRoute
+  MapIndexRoute: typeof MapIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -128,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -142,6 +188,20 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map/': {
+      id: '/map/'
+      path: '/map'
+      fullPath: '/map/'
+      preLoaderRoute: typeof MapIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map/$worldId': {
+      id: '/map/$worldId'
+      path: '/map/$worldId'
+      fullPath: '/map/$worldId'
+      preLoaderRoute: typeof MapWorldIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding/character': {
@@ -177,12 +237,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
+  MapWorldIdRoute: MapWorldIdRoute,
   OnboardingCharacterRoute: OnboardingCharacterRoute,
   OnboardingDifficultyRoute: OnboardingDifficultyRoute,
   OnboardingLanguageRoute: OnboardingLanguageRoute,
   OnboardingWelcomeRoute: OnboardingWelcomeRoute,
+  MapIndexRoute: MapIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -5,7 +5,7 @@ import { AppShell } from "@/components/layout/AppShell";
 import { Button } from "@/components/ui/game-button";
 import { ProgressBar } from "@/components/ui/progress-bar";
 import { useGame } from "@/context/GameContext";
-import { findWorld } from "@/data/game";
+import { findWorld, type World } from "@/data/game";
 import dungeonBg from "@/assets/dungeon-bg.jpg";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/map/$worldId")({
 });
 
 function WorldPage() {
-  const { world } = Route.useLoaderData();
+  const { world } = Route.useLoaderData() as { world: World };
   const { state, isStageUnlocked } = useGame();
   const navigate = useNavigate();
 
