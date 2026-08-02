@@ -184,7 +184,7 @@ function makeStages(worldId: string, enemies: string[], baseXp: number): Stage[]
     index: i + 1,
     title,
     type: i === 4 ? "boss" : i === 3 ? "treasure" : "enemy",
-    enemy: enemies[i % enemies.length],
+    enemy: enemies[i % enemies.length] as string,
     enemyHp: 60 + i * 25,
     xp: baseXp + i * 20,
     coins: 25 + i * 15,
