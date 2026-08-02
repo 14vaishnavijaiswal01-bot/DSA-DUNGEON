@@ -10,8 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as BattleStageIdRouteImport } from './routes/battle.$stageId'
 import { Route as ChallengeStageIdRouteImport } from './routes/challenge.$stageId'
@@ -28,14 +33,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SignupRoute = SignupRouteImport.update({
@@ -91,8 +121,13 @@ const VictoryStageIdRoute = VictoryStageIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
   '/dashboard': typeof DashboardRoute
+  '/inventory': typeof InventoryRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/battle/$stageId': typeof BattleStageIdRoute
   '/challenge/$stageId': typeof ChallengeStageIdRoute
@@ -106,8 +141,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
   '/dashboard': typeof DashboardRoute
+  '/inventory': typeof InventoryRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/battle/$stageId': typeof BattleStageIdRoute
   '/challenge/$stageId': typeof ChallengeStageIdRoute
@@ -122,8 +162,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
   '/dashboard': typeof DashboardRoute
+  '/inventory': typeof InventoryRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/battle/$stageId': typeof BattleStageIdRoute
   '/challenge/$stageId': typeof ChallengeStageIdRoute
@@ -139,8 +184,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/achievements'
     | '/dashboard'
+    | '/inventory'
+    | '/leaderboard'
     | '/login'
+    | '/profile'
+    | '/settings'
     | '/signup'
     | '/battle/$stageId'
     | '/challenge/$stageId'
@@ -154,8 +204,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/achievements'
     | '/dashboard'
+    | '/inventory'
+    | '/leaderboard'
     | '/login'
+    | '/profile'
+    | '/settings'
     | '/signup'
     | '/battle/$stageId'
     | '/challenge/$stageId'
@@ -169,8 +224,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/achievements'
     | '/dashboard'
+    | '/inventory'
+    | '/leaderboard'
     | '/login'
+    | '/profile'
+    | '/settings'
     | '/signup'
     | '/battle/$stageId'
     | '/challenge/$stageId'
@@ -185,8 +245,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AchievementsRoute: typeof AchievementsRoute
   DashboardRoute: typeof DashboardRoute
+  InventoryRoute: typeof InventoryRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
+  ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
   SignupRoute: typeof SignupRoute
   BattleStageIdRoute: typeof BattleStageIdRoute
   ChallengeStageIdRoute: typeof ChallengeStageIdRoute
@@ -208,6 +273,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -215,11 +287,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signup': {
@@ -297,8 +397,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AchievementsRoute: AchievementsRoute,
   DashboardRoute: DashboardRoute,
+  InventoryRoute: InventoryRoute,
+  LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
+  ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
   SignupRoute: SignupRoute,
   BattleStageIdRoute: BattleStageIdRoute,
   ChallengeStageIdRoute: ChallengeStageIdRoute,
